@@ -410,6 +410,8 @@ def main():
             game_state = 'game'
         elif game_state == 'game':
             ai_speed = ((round_counter % 10) * 0.5) + 1
+            if round_counter % 10 == 0:
+                    ai_count += 1 
             player_won = game(ai_speed, ai_count)
             game_state = 'gameOver'
         elif game_state == 'gameOver':
@@ -417,8 +419,6 @@ def main():
                 game_over_screen(screen, "You Won", "Next Round",
                                  f"Beat Round: {round_counter}   Starting Round: {round_counter + 1}")
                 round_counter += 1
-                if round_counter > 10:
-                    ai_count = 1 + round_counter // 10
             else:
                 game_over_screen(screen, "You Lost", "Start Over",
                                  f"Highest Round Beaten: {round_counter}")
